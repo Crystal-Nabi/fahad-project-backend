@@ -23,5 +23,6 @@
     "nodemon": "^2.0.22",
     "pandas": "^0.0.3",
     "xlsx": "^0.18.5"
-  }
+  },
+  "packageManager": "pnpm@6.3.2"
 }
