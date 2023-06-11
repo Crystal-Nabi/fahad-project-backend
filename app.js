@@ -36,7 +36,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
+app.use(express.static(path.join(__dirname, "public", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "build", "index.html"));
+});
 app.post("/catagory", upload.single("file"), async (req, res) => {
   try {
     const fileName = "./uploads/catagory.xlsx";
