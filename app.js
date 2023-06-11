@@ -5,12 +5,13 @@ const fs = require("fs");
 const XLSX = require("xlsx");
 const path = require("path");
 const app = express();
-
+const morgan = require("morgan");
 app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
-
+require("dotenv").config();
+app.use(morgan("dev"));
 //connect mongodb
 const db = require("./src/models");
 db.mongoose
@@ -36,10 +37,9 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-app.use(express.static(path.join(__dirname, "public", "build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "build", "index.html"));
-});
+
+app.use(express.static(path.join(__dirname, "dist", "build")));
+
 app.post("/catagory", upload.single("file"), async (req, res) => {
   try {
     const fileName = "./uploads/catagory.xlsx";
@@ -78,6 +78,9 @@ app.get("/files/download", (req, res) => {
   const fileName = "catagory.xlsx";
   const filePath = path.join(__dirname, "./uploads/", fileName);
   res.download(filePath, fileName);
+});
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "build", "index.html"));
 });
 
 // set port, listen for requests
