@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production PORT=80 node app.js",
     "dev": "cross-env NODE_ENV=development PORT=8080 nodemon app.j",
-    "build": "npm install && npm start"
+    "deploy": "npm run build && netlify deploy --prod"
   },
   "author": "paul",
   "license": "ISC",
@@ -23,6 +23,5 @@
     "nodemon": "^2.0.22",
     "pandas": "^0.0.3",
     "xlsx": "^0.18.5"
-  },
-  "packageManager": "pnpm@6.3.2"
+  }
 }
