@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 //connect mongodb
-const db = require("./models");
+const db = require("./src/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
