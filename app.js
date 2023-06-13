@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const multer = require("multer");
+// const multer = require("multer");
 const fs = require("fs");
 // const XLSX = require("xlsx");
 const path = require("path");
@@ -27,18 +27,18 @@ db.mongoose
     process.exit();
   });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, "catagory.xlsx");
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "uploads/");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, "catagory.xlsx");
+//   },
+// });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
-app.use(express.static(path.join(__dirname, "dist", "build")));
+// app.use(express.static(path.join(__dirname, "dist", "build")));
 
 // app.post("/catagory", upload.single("file"), async (req, res) => {
 //   try {
@@ -67,21 +67,21 @@ app.use(express.static(path.join(__dirname, "dist", "build")));
 //   }
 // });
 
-app.get("/catagory", async (req, res) => {
-  const result = await db.catagories
-    .find()
-    .then((catagories) => res.status(200).send(catagories))
-    .catch((err) => console.error(err));
-});
+// app.get("/catagory", async (req, res) => {
+//   const result = await db.catagories
+//     .find()
+//     .then((catagories) => res.status(200).send(catagories))
+//     .catch((err) => console.error(err));
+// });
 
 // app.get("/files/download", (req, res) => {
 //   const fileName = "catagory.xlsx";
 //   const filePath = path.join(__dirname, "./uploads/", fileName);
 //   res.download(filePath, fileName);
 // });
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "build", "index.html"));
+// });
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
