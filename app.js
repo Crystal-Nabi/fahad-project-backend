@@ -1,31 +1,31 @@
 const express = require("express");
 const cors = require("cors");
 // const multer = require("multer");
-const fs = require("fs");
+// const fs = require("fs");
 // const XLSX = require("xlsx");
-const path = require("path");
+// const path = require("path");
 const app = express();
 const morgan = require("morgan");
 app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
-require("dotenv").config();
+// require("dotenv").config();
 app.use(morgan("dev"));
 //connect mongodb
-const db = require("./src/models");
-db.mongoose
-  .connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to the database!");
-  })
-  .catch((err) => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
-  });
+// const db = require("./src/models");
+// db.mongoose
+//   .connect(db.url, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log("Connected to the database!");
+//   })
+//   .catch((err) => {
+//     console.log("Cannot connect to the database!", err);
+//     process.exit();
+//   });
 
 // const storage = multer.diskStorage({
 //   destination: (req, file, cb) => {
